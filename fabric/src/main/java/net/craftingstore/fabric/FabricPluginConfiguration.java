@@ -1,4 +1,4 @@
-package network.roanoke.craftingstore;
+package net.craftingstore.fabric;
 
 import net.craftingstore.core.PluginConfiguration;
 

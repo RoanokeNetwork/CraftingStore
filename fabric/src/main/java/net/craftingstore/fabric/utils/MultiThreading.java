@@ -1,4 +1,4 @@
-package network.roanoke.craftingstore.utils;
+package net.craftingstore.fabric.utils;
 
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;

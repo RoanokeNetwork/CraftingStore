@@ -1,20 +1,26 @@
 {
   "schemaVersion": 1,
   "id": "craftingstore",
-  "version": "1.20.1",
+  "version": "${version}",
+
   "name": "craftingstore",
   "description": "",
   "authors": [],
   "contact": {
     "repo": "https://github.com/RoanokeNetwork/CraftingStore-Fabric"
   },
+
   "license": "All-Rights-Reserved",
+
   "environment": "server",
   "entrypoints": {
     "main": [
-      "network.roanoke.craftingstore.CraftingStoreFabric"
+      "net.craftingstore.fabric.CraftingStoreFabric"
     ]
   },
+  "mixins": [
+    "craftingstore.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=0.14.22",
     "fabric": "*",

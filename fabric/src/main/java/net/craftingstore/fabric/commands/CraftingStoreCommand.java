@@ -1,14 +1,14 @@
-package network.roanoke.craftingstore.commands;
+package net.craftingstore.fabric.commands;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
-import me.lucko.fabric.api.permissions.v0.Permissions;
+import net.craftingstore.fabric.CraftingStoreFabric;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import network.roanoke.craftingstore.CraftingStoreFabric;
+import net.craftingstore.fabric.utils.Permissions;
 
 import java.util.concurrent.ExecutionException;
 
@@ -18,7 +18,6 @@ import static net.minecraft.server.command.CommandManager.literal;
 public class CraftingStoreCommand {
 
     private CraftingStoreFabric instance;
-
     public CraftingStoreCommand(CraftingStoreFabric instance) {
 
         this.instance = instance;
@@ -26,7 +25,7 @@ public class CraftingStoreCommand {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(
                     literal("craftingstore")
-                            .requires(Permissions.require("craftingstore.admin", 4))
+                            .requires(Permissions.require("craftingstore.admin"))
                             .then(
                                     literal("api")
                                             .then(argument("api-key", StringArgumentType.string())
