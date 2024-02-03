@@ -22,7 +22,7 @@ public class FabricPluginConfiguration implements PluginConfiguration {
 
     @Override
     public String getVersion() {
-        return "1.0";
+        return "2.9.3";
     }
 
     @Override

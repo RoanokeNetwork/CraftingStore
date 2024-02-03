@@ -7,10 +7,12 @@ import net.craftingstore.core.PluginConfiguration;
 import net.craftingstore.core.logging.CraftingStoreLogger;
 import net.craftingstore.core.logging.impl.JavaLogger;
 import net.craftingstore.core.models.donation.Donation;
-import network.roanoke.craftingstore.utils.MultiThreading;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.ServerPlayerEntity;
+import network.roanoke.craftingstore.utils.MultiThreading;
 import org.slf4j.LoggerFactory;
 
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -30,12 +32,29 @@ public class CraftingStoreFabricImpl implements CraftingStorePlugin {
     public boolean executeDonation(Donation donation) {
         final var id = String.format("%s/%s", donation.getPaymentId(), donation.getCommandId());
 
+        UUID userUUID;
+        if (donation.getPlayer().getUsername() != null && donation.getPlayer().getUUID() == null) {
+
+            ServerPlayerEntity serverPlayer = fabricPlugin.getServer()
+                    .getPlayerManager()
+                    .getPlayer(donation.getPlayer().getUsername());
+
+            if (serverPlayer != null) {
+                userUUID = serverPlayer.getUuid();
+            } else {
+                userUUID = donation.getPlayer().getUUID();
+            }
+
+        } else {
+            userUUID = donation.getPlayer().getUUID();
+        }
+
         this.getLogger().info(String.format("Donation (%s) > Package: %s, PlayerName: %s, PlayerUUID: %s",
-                id, donation.getPackage().getName(), donation.getPlayer().getUsername(), donation.getPlayer().getUUID()));
+                id, donation.getPackage().getName(), donation.getPlayer().getUsername(), userUUID));
         this.getLogger().info(String.format("Donation (%s) > Command: %s", id, donation.getCommand()));
 
         if (donation.getPlayer().isRequiredOnline()) {
-            if (fabricPlugin.getServer().getPlayerManager().getPlayerList().stream().noneMatch(player -> player.getUuid().equals(donation.getPlayer().getUUID()))) {
+            if (fabricPlugin.getServer().getPlayerManager().getPlayerList().stream().noneMatch(player -> player.getUuid().equals(userUUID))) {
                 this.getLogger().info(String.format("Donation (%s) > Player not online!!", id));
                 return false;
             }
