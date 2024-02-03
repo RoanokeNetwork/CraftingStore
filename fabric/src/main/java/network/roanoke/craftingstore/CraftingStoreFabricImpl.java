@@ -1,4 +1,4 @@
-package net.craftingstore.fabric;
+package network.roanoke.craftingstore;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -7,7 +7,7 @@ import net.craftingstore.core.PluginConfiguration;
 import net.craftingstore.core.logging.CraftingStoreLogger;
 import net.craftingstore.core.logging.impl.JavaLogger;
 import net.craftingstore.core.models.donation.Donation;
-import net.craftingstore.fabric.utils.MultiThreading;
+import network.roanoke.craftingstore.utils.MultiThreading;
 import net.minecraft.server.command.ServerCommandSource;
 import org.slf4j.LoggerFactory;
 

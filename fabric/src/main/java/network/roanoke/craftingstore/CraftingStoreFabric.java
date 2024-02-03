@@ -1,11 +1,11 @@
-package net.craftingstore.fabric;
+package network.roanoke.craftingstore;
 
 import net.craftingstore.core.CraftingStore;
-import net.craftingstore.fabric.commands.CraftingStoreCommand;
+import network.roanoke.craftingstore.commands.CraftingStoreCommand;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.server.MinecraftServer;
-import net.craftingstore.fabric.utils.Config;
+import network.roanoke.craftingstore.utils.Config;
 
 public class CraftingStoreFabric implements ModInitializer {
 

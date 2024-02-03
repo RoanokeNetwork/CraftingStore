@@ -1,4 +1,4 @@
-package net.craftingstore.fabric.utils;
+package network.roanoke.craftingstore.utils;
 
 import net.fabricmc.loader.api.FabricLoader;
 

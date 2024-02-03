@@ -15,7 +15,7 @@
   "environment": "server",
   "entrypoints": {
     "main": [
-      "net.craftingstore.fabric.CraftingStoreFabric"
+      "network.roanoke.craftingstore.CraftingStoreFabric"
     ]
   },
   "mixins": [

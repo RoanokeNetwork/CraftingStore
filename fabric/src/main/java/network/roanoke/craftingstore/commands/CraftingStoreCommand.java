@@ -1,14 +1,12 @@
-package net.craftingstore.fabric.commands;
+package network.roanoke.craftingstore.commands;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
-import net.craftingstore.fabric.CraftingStoreFabric;
+import network.roanoke.craftingstore.CraftingStoreFabric;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import net.craftingstore.fabric.utils.Permissions;
+import network.roanoke.craftingstore.utils.Permissions;
 
 import java.util.concurrent.ExecutionException;
 
