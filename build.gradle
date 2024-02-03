@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+
+allprojects {
+    apply plugin: "java"
+    apply plugin: "idea"
+    apply plugin: "maven-publish"
+
+    archivesBaseName = rootProject.archives_base_name
+    version = rootProject.mod_version
+    group = rootProject.maven_group
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+        options.release.set(17)
+    }
+
+
+    java {
+        withSourcesJar()
+    }
+}
+
+

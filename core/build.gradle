@@ -1,0 +1,46 @@
+plugins {
+    id "org.jetbrains.kotlin.jvm" version "1.7.10"
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+}
+configurations {
+    shadowCommon
+}
+
+dependencies {
+    compileOnly 'com.google.code.gson:gson:2.8.9'
+    compileOnly 'com.github.thijsa:socket.io-client-java:1.0.3'
+    compileOnly 'org.apache.httpcomponents:httpclient:4.5.13'
+    compileOnly 'org.apache.commons:commons-lang3:3.12.0'
+    compileOnly 'commons-logging:commons-logging:1.2'
+    compileOnly 'org.apache.commons:commons-text:1.10.0'
+    compileOnly 'net.luckperms:api:5.4'
+    compileOnly 'com.github.cryptomorin:XSeries:9.8.1'
+    // log4j wrapper
+    compileOnly 'org.apache.logging.log4j:log4j-api:2.8.1'
+    // slf4j wrapper
+    compileOnly 'org.slf4j:slf4j-api:1.8.0-beta4'
+
+    shadowCommon 'org.apache.httpcomponents:httpclient:4.5.13'
+    shadowCommon 'org.apache.commons:commons-lang3:3.12.0'
+    shadowCommon 'org.apache.commons:commons-text:1.10.0'
+    shadowCommon 'com.github.thijsa:socket.io-client-java:1.0.3'
+    shadowCommon 'com.github.cryptomorin:XSeries:9.8.1'
+}
+
+shadowJar {
+    configurations = [project.configurations.shadowCommon]
+
+    relocate 'org.apache.http', 'net.craftingstore.libraries.apache.http'
+    relocate 'org.apache.commons.lang3', 'net.craftingstore.libraries.apache.commons.lang3'
+    relocate 'org.apache.commons.logging', 'net.craftingstore.libraries.apache.commons.logging'
+    relocate 'org.apache.commons.codec', 'net.craftingstore.libraries.apache.commons.codec'
+    relocate 'org.apache.commons.text', 'net.craftingstore.libraries.apache.commons.text'
+    relocate 'org.json', 'net.craftingstore.libraries.json'
+    relocate 'io.socket', 'net.craftingstore.libraries.socket'
+    relocate 'okhttp3', 'net.craftingstore.libraries.okhttp3'
+    relocate 'okio', 'net.craftingstore.libraries.okio'
+    relocate 'com.cryptomorin.xseries', 'net.craftingstore.libraries.xseries'
+}
+
+
+jar.finalizedBy('shadowJar')
